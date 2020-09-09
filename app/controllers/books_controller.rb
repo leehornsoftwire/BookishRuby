@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    #convert to array so we can sort
+    @books = Book.all.to_a
+    @books.sort_by!{ |b| b.title}
   end
   def new
     @book = Book.new

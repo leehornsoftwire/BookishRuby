@@ -11,6 +11,7 @@
 
 <ul>
   <% for copy in @book.copies %>
+    <%# add_copy_form will show the errors, so don't try to render errored copies here %>
     <% if not copy.errors.any? %>
       <li>  <%= render copy %> </li>
     <% end %>
