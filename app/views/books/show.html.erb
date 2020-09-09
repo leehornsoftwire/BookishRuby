@@ -7,6 +7,12 @@
 <p>ISBN: <%= @book.isbn %></p>
 
 <%= link_to 'edit', edit_book_url(@book) %>
+
+<ul>
+  <% for copy in @book.copies %>
+    <li> Borrowed by <%= copy.borrower %><br> due date <%= copy.due_date %>  </li>
+  <% end %>
+</ul>
 <%= render 'books/add_copy_form' %>
 
 
