@@ -13,6 +13,13 @@ class BooksController < ApplicationController
       render 'new'
     end
   end
+
+  def destroy 
+    @book = Book.find(params[:id])
+    @book.copies.delete_all
+    @book.destroy
+    redirect_to books_path
+  end 
   def update 
     @book = Book.find(params[:id])
     if @book.update(book_params)
