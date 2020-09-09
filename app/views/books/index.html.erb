@@ -1,11 +1,22 @@
-<h1>List of all books</h1>
-
-<% for book in @books %>
-  <li>
-    <%= link_to book.title,book %>
-  </li>
-<% end %>
 
 <p>
-<%= link_to 'Add new book', new_book_path %>
+  <% if not @current_user.nil? %>
+    Hello <%= @current_user.id %><br>
+    <%= link_to 'logout', "/users/sign_out", method: :delete %>
+  <% else %>
+    <%= link_to 'sign in', "/users/sign_in" %>
+  <% end %>
+</p>
+
+<p>
+  <h1>List of all books</h1>
+  <% for book in @books %>
+    <li>
+      <%= link_to book.title,book %>
+    </li>
+  <% end %>
+
+  <p>
+  <%= link_to 'Add new book', new_book_path %>
+  </p>
 </p>
