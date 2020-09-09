@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources 'books' do
-    resources 'copies'
+    resources 'copies', shallow: true
   end
 
   root 'books#index'

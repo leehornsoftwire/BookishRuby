@@ -18,8 +18,12 @@ class CopiesController < ApplicationController
     end
   end
   def edit 
-    @book = Book.find(params[:book_id])
     @copy = Copy.find(params[:id])
+  end
+  def destroy
+    copy = Copy.find(params[:id])
+    copy.destroy
+    redirect_to "/books/#{copy.book_id}"
   end
   private
     def copy_params
