@@ -1,0 +1,17 @@
+
+<%= form_with model: @book, local:true  do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %><br>
+  </p>
+  <p>
+    <%= form.label :author %><br>
+    <%= form.text_field :author %><br>
+  </p>
+  <p>
+    <%= form.label :isbn %><br>
+    <%= form.text_field :isbn %><br>
+  </p>
+  <p>
+    <%= form.submit %>
+<% end %>
