@@ -1,7 +1,7 @@
 
 <p>
   <% if not @current_user.nil? %>
-    Hello <%= @current_user.id %><br>
+    Hello <%= @current_user.email %><br>
     <%= link_to 'logout', "/users/sign_out", method: :delete %>
   <% else %>
     <%= link_to 'sign in', "/users/sign_in" %>
