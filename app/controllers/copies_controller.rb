@@ -5,7 +5,7 @@ class CopiesController < ApplicationController
     if @copy.save
       redirect_to @book
     else 
-      render 'books/show'
+      render "books/show", id: params[:book_id]
     end
   end
   def update
@@ -23,7 +23,7 @@ class CopiesController < ApplicationController
   def destroy
     copy = Copy.find(params[:id])
     copy.destroy
-    redirect_to "/books/#{copy.book_id}"
+    redirect_to book_path(copy.book_id)
   end
   private
     def copy_params

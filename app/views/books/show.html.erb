@@ -11,12 +11,14 @@
 
 <ul>
   <% for copy in @book.copies %>
-    <li>  <%= render copy %> </li>
+    <% if not copy.errors.any? %>
+      <li>  <%= render copy %> </li>
+    <% end %>
   <% end %>
 </ul>
 <%= render 'books/add_copy_form' %>
 
-<%= link_to 'Back to all books', '/books' %>
+<%= link_to 'Back to all books', books_path %>
 
 
     

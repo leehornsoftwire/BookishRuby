@@ -1,3 +1,3 @@
 Borrowed by <%= copy.borrower %><br> due date <%= copy.due_date %> 
-<%= link_to 'edit', edit_copy_url(copy) %>
-<%= link_to 'delete', copy_path(copy), method: :delete %>
+<%= link_to 'edit', "/copies/#{copy.id}" %>
+<%= link_to 'delete', "/copies/#{copy.id}", method: :delete %>
