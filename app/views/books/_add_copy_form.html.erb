@@ -1,0 +1,24 @@
+<h2> Add a copy: </h2>
+<%= form_with(model:  [ @book, @book.copies.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :borrower %>
+    <%= form.text_field :borrower %>
+  </p>
+  <p>
+    <%= form.label :due_date %>
+    <%= form.date_field :due_date %>
+  </p>
+  <% if not @copy.nil? and @copy.errors.any? %>
+    <h2>
+      Unable to save!
+    </h2>
+    <ul>
+      <% for error_message in @copy.errors.full_messages %>
+        <li> <%= error_message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

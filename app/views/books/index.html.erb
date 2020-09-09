@@ -3,8 +3,10 @@
 <% for book in @books %>
   <li>
     <%= book.title %>
-    <% for copy in book.copies %>
-      <li> Borrowed by <%= copy.borrower %> </li>
-    <% end %>
+    <ul>
+      <% for copy in book.copies %>
+        <li> Borrowed by <%= copy.borrower %> </li>
+      <% end %>
+    </ul>
   </li>
 <% end %>

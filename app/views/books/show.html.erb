@@ -6,6 +6,8 @@
 </p>
 <p>ISBN: <%= @book.isbn %></p>
 
-<%= link_to 'edit',:edit_book %>
+<%= link_to 'edit', edit_book_url(@book) %>
+<%= render 'books/add_copy_form' %>
+
 
     
