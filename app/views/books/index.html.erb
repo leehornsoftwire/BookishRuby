@@ -2,9 +2,10 @@
 
 <% for book in @books %>
   <li>
-    <%= book.title %>
-    <% for copy in book.copies %>
-      <li> Borrowed by <%= copy.borrower %> </li>
-    <% end %>
+    <%= link_to book.title,book %>
   </li>
 <% end %>
+
+<p>
+<%= link_to 'Add new book', new_book_path %>
+</p>

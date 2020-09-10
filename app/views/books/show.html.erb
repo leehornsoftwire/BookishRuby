@@ -1,0 +1,24 @@
+<h1> 
+  <%= @book.title %>
+</h1>
+<p>
+  By <%= @book.author %>
+</p>
+<p>ISBN: <%= @book.isbn %></p>
+
+<%= link_to 'edit', edit_book_url(@book) %>
+<%= link_to 'delete', book_path(@book),method: :delete %>
+
+<ul>
+  <% for copy in @book.copies %>
+    <% if not copy.errors.any? %>
+      <li>  <%= render copy %> </li>
+    <% end %>
+  <% end %>
+</ul>
+<%= render 'books/add_copy_form' %>
+
+<%= link_to 'Back to all books', books_path %>
+
+
+    
