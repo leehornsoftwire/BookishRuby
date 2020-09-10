@@ -1,3 +1,17 @@
-Borrowed by <%= copy.borrower %><br> due date <%= copy.due_date %> 
+<% if not copy.user_id.nil? %>
+  <% if current_user.nil? or current_user.id != copy.user_id %>
+    Copy borrowed by <%= copy.user.email %><br> due date <%= copy.due_date %> 
+  <% else %>
+      You have checked this book out!
+      <%= button_to "Return", "/copies/#{copy.id}/return" %>
+  <% end %>
+<% else %>  
+  <div>
+  Unborrowed copy
+    <% unless current_user.nil? %>
+      <%= button_to "Checkout", "/copies/#{copy.id}/checkout" %>
+    <%end%>
+  </div>
+<% end %>
 <%= link_to 'edit', edit_copy_url(copy.id) %>
 <%= link_to 'delete', copy_path(copy.id), method: :delete %>

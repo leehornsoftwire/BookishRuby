@@ -1,5 +1,4 @@
 class Copy < ApplicationRecord
   belongs_to :book
-  validates :borrower, presence: true
-  validates :due_date, presence: true
+  belongs_to :user, required: false
 end

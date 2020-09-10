@@ -1,7 +1,7 @@
 class CopiesController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
-    @copy = @book.copies.new(copy_params)
+    @copy = @book.copies.new(user_id: nil, due_date: nil)
     if @copy.save
       redirect_to @book
     else
@@ -19,6 +19,23 @@ class CopiesController < ApplicationController
     end
   end
 
+  def checkout 
+    @copy = Copy.find(params[:id])
+    @copy.user_id = current_user.id
+    @copy.save
+    redirect_to book_path(@copy.book_id)
+  end
+
+  def return 
+    @copy = Copy.find(params[:id])
+    unless @copy.user_id == current_user.id
+      raise "Cannot return other people's books!"
+    end
+    @copy.user_id = nil
+    @copy.save
+    redirect_to book_path(@copy.book_id)
+  end
+
   def edit
     @copy = Copy.find(params[:id])
   end
@@ -32,6 +49,6 @@ class CopiesController < ApplicationController
   private
 
   def copy_params
-    params.require(:copy).permit(:borrower, :due_date)
+    params.require(:copy).permit(:user_id, :due_date)
   end
 end

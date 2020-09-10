@@ -1,2 +1,3 @@
-<h2> Add a copy: </h2>
-<%= render partial: 'copies/form', locals: {send_to: book_copies_path(@book.id), method: :post} %>
+<%= form_with url: book_copies_path(@book.id) do |form| %>
+  <%= form.submit "Add a copy" %>
+<% end %>
