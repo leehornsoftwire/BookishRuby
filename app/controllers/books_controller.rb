@@ -2,8 +2,7 @@ class BooksController < ApplicationController
   def index
     @current_user = current_user
     # convert to array so we can sort
-    @books = Book.all.to_a
-    @books.sort_by! { |b| b.title }
+    @books = Book.order(:title)
   end
 
   def new
