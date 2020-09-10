@@ -1,3 +1,7 @@
-Borrowed by <%= copy.borrower %><br> due date <%= copy.due_date %> 
+<% if not copy.user_id.nil? %>
+  Copy borrowed by <%= copy.user.email %><br> due date <%= copy.due_date %> 
+<% else %>  
+  Unborrowed copy
+<% end %>
 <%= link_to 'edit', edit_copy_url(copy.id) %>
 <%= link_to 'delete', copy_path(copy.id), method: :delete %>

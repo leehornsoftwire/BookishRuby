@@ -9,15 +9,17 @@
 <%= link_to 'edit', edit_book_url(@book) %>
 <%= link_to 'delete', book_path(@book),method: :delete %>
 
-<ul>
-  <% for copy in @book.copies %>
-    <%# add_copy_form will show the errors, so don't try to render errored copies here %>
-    <% if not copy.errors.any? %>
-      <li>  <%= render copy %> </li>
+<p>
+  <ul>
+    <% for copy in @book.copies %>
+      <%# add_copy_form will show the errors, so don't try to render errored copies here %>
+      <% if not copy.errors.any? %>
+        <li>  <%= render copy %> </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
-<%= render 'books/add_copy_form' %>
+  </ul>
+  <%= render 'books/add_copy_form' %>
+</p>
 
 <%= link_to 'Back to all books', books_path %>
 
