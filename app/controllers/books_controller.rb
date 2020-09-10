@@ -2,7 +2,12 @@ class BooksController < ApplicationController
   def index
     @current_user = current_user
     # convert to array so we can sort
-    @books = Book.order(:title)
+    search_string = params["search"]
+    if search_string.nil? or search_string.empty? 
+      @books = Book.order(:title)
+    else
+      @books = Book.order(:title).where("title like ?", "%#{search_string}%")
+    end
   end
 
   def new
