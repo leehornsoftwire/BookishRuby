@@ -12,7 +12,7 @@
   <h1>List of all books</h1>
   <% for book in @books %>
     <li>
-      <%= link_to book.title,book %>
+      <%= link_to "#{book.title}, by #{book.author}",book %>
     </li>
   <% end %>
 
