@@ -19,6 +19,23 @@ class CopiesController < ApplicationController
     end
   end
 
+  def checkout 
+    @copy = Copy.find(params[:id])
+    @copy.user_id = current_user.id
+    @copy.save
+    redirect_to book_path(@copy.book_id)
+  end
+
+  def return 
+    @copy = Copy.find(params[:id])
+    unless @copy.user_id == current_user.id
+      raise "Cannot return other people's books!"
+    end
+    @copy.user_id = nil
+    @copy.save
+    redirect_to book_path(@copy.book_id)
+  end
+
   def edit
     @copy = Copy.find(params[:id])
   end
