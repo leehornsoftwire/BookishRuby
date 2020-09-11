@@ -1,3 +1,5 @@
+require "date"
+
 class CopiesController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
@@ -22,6 +24,8 @@ class CopiesController < ApplicationController
   def checkout 
     @copy = Copy.find(params[:id])
     @copy.user_id = current_user.id
+    today = Date.today
+    @copy.due_date = today.next_day(30)
     @copy.save
     redirect_to book_path(@copy.book_id)
   end
