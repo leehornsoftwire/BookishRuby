@@ -12,7 +12,7 @@
   <h1>List of all books</h1>
   <% for book in @books %>
     <li>
-      <%= link_to book.title,book %>
+      <%= link_to "#{book.title}, by #{book.author}",book %>
     </li>
   <% end %>
 
@@ -20,3 +20,22 @@
   <%= link_to 'Add new book', new_book_path %>
   </p>
 </p>
+
+<br>
+<p>
+  Search for books:
+</p>
+<%= form_with(scope: :search, local: true, method: :get) do |form| %>
+  <p>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </p>
+  <p>
+    <%= form.submit "Search" %>
+  </p>
+<% end %>
+

@@ -2,8 +2,16 @@ class BooksController < ApplicationController
   def index
     @current_user = current_user
     # convert to array so we can sort
-    @books = Book.all.to_a
-    @books.sort_by! { |b| b.title }
+    title_search_string = ""
+    author_search_string = ""
+    unless params[:search].nil?
+      search_params = params[:search]
+      title_search_string = search_params["title"].nil? ? "" : search_params["title"]
+      author_search_string = search_params["author"].nil? ? "" : search_params["author"]
+    end
+    @books = Book.order(:title)
+      .where("title like ?", "%#{title_search_string}%")
+      .where("author like ?", "%#{author_search_string}%")
   end
 
   def new
@@ -21,7 +29,6 @@ class BooksController < ApplicationController
 
   def destroy
     book = Book.find(params[:id])
-    book.copies.delete_all
     book.destroy
     redirect_to books_path
   end
